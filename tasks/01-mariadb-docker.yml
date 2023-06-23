@@ -32,7 +32,8 @@
       - /var/lib/mysql:/var/lib/mysql
     ports:
       - "3306:3306"
-
+    container_default_behavior: no_defaults
+    
 - name: Wait for MariaDB to start
   wait_for:
     host: 127.0.0.1
