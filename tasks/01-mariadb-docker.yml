@@ -1,7 +1,16 @@
-
-
+#---
+# Title: role-mariadb-docker
+#
+# Author: Bitfinity / L. Rutten
+# Owner: Bitfinity / L. Rutten
+#
+# File: tasks/main.yml
+#
+# Description:
+#   This is the main file of the role.
+#
 - name: "Install APT packages"
-  apt:
+  ansible.builtin.apt:
     pkg:
     - git
     - unzip
