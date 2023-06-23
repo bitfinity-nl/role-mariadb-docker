@@ -13,25 +13,26 @@
 
 # -- tasks/01-mariadb-docker.yml --
 #
-# Variable(s):
+# Variable(s) and Example(s):
 #   mariadb_root_password : 'your_root_password'  # Set MariaDB root account.
 #   mariadb_databases     :                       # Variable that can contain multiple databases.
-#     - { name : 'database1',                       # Set database name.
-#         user : 'dbuser1',                         # Set database user.
-#         pass : 'your_password1',                  # Set database password.
+#     - { db_name : 'database1',                  # Set database name.
+#         db_user : 'dbuser1',                    # Set database user.
+#         db_pass : 'your_password1',             # Set database password.
 #         }
-#     - { name : 'database2',                       # Set database name.
-#         user : 'dbuser2',                         # Set database user.
-#         pass : 'your_password2',                  # Set database password.
+#     - { db_name : 'database2',                  # Set database name.
+#         db_user : 'dbuser2',                    # Set database user.
+#         db_pass : 'your_password2',             # Set database password.
 #         }
 #
 # Description:
+#   You can create multiple databases with the 'mariadb_databases' variable.
 #
 mariadb_root_password : 'your_root_password'
 mariadb_databases     :
-  - { name : 'database',
-      user : 'dbuser',
-      pass : 'your_password',
+  - { db_name : 'database',
+      db_user : 'dbuser',
+      db_pass : 'your_password',
       }
 
       
