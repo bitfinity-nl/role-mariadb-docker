@@ -12,10 +12,30 @@
 - name: "Install APT packages"
   ansible.builtin.apt:
     pkg:
-    - git
-    - unzip
-    - wget
-    - docker.io
-    - python3-docker
     - docker
     - docker-compose
+    - docker.io
+    - python3-docker
+    - python3-pip
+
+- name: "Start MariaDB Docker container"
+  docker_container:
+    name: mariadb
+    image: mariadb
+    restart_policy: always
+    env:
+      MYSQL_ROOT_PASSWORD: "{{ mariadb_root_password }}"
+      MYSQL_DATABASE: "{{ mariadb_database }}"
+      MYSQL_USER: "{{ mariadb_user }}"
+      MYSQL_PASSWORD: "{{ mariadb_password }}"
+    volumes:
+      - /var/lib/mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+- name: Wait for MariaDB to start
+  wait_for:
+    host: 127.0.0.1
+    port: 3306
+    delay: 5
+    timeout: 60
