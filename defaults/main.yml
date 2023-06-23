@@ -1,0 +1,37 @@
+#---
+# Title: role-mariadb-docker
+#
+# Author: Bitfinity / L. Rutten
+# Owner: Bitfinity / L. Rutten
+#
+# File: defaults/main.yml
+#
+# Description:
+#   This file contains the default settings
+#   that can be overridden in the playbook.
+#
+
+# -- tasks/01-mariadb-docker.yml --
+#
+# Variable(s):
+#   mariadb_root_password : 'your_root_password'  # Set MariaDB root account.
+#   mariadb_databases     :                       # Variable that can contain multiple databases.
+#     - { name : 'database1',                       # Set database name.
+#         user : 'dbuser1',                         # Set database user.
+#         pass : 'your_password1',                  # Set database password.
+#         }
+#     - { name : 'database2',                       # Set database name.
+#         user : 'dbuser2',                         # Set database user.
+#         pass : 'your_password2',                  # Set database password.
+#         }
+#
+# Description:
+#
+mariadb_root_password : 'your_root_password'
+mariadb_databases     :
+  - { name : 'database',
+      user : 'dbuser',
+      pass : 'your_password',
+      }
+
+      
