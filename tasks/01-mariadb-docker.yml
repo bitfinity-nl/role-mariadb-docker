@@ -1,0 +1,12 @@
+
+
+- name: "Install APT packages"
+  apt:
+    pkg:
+    - git
+    - unzip
+    - wget
+    - docker.io
+    - python3-docker
+    - docker
+    - docker-compose
