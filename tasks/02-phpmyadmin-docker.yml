@@ -1,16 +1,24 @@
-
-
-
-    - name: Start phpMyAdmin Docker container
-      docker_container:
-        name: "{{ phpmyadmin_container_name }}"
-        image: phpmyadmin/phpmyadmin
-        restart_policy: always
-        links:
-          - "{{ mariadb_container_name }}:db"
-        environment:
-          PMA_HOST: db
-          PMA_PORT: 3306
-          PMA_ARBITRARY: 1
-        ports:
-          - "{{ phpmyadmin_port }}:80"
+#---
+# Title: role-mariadb-docker
+#
+# Author: Bitfinity / L. Rutten
+# Owner: Bitfinity / L. Rutten
+#
+# File: tasks/02-phpmyadmin-docker.yml
+#
+# Description:
+#   This is the main file of the role.
+#
+- name: Start phpMyAdmin Docker container
+  docker_container:
+    name: "{{ phpmyadmin_container_name }}"
+    image: phpmyadmin/phpmyadmin
+    restart_policy: always
+    links:
+      - "{{ mariadb_container_name }}:db"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    ports:
+      - "8080:80"
