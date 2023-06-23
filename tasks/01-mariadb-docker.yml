@@ -12,11 +12,11 @@
 - name: "Install APT packages"
   ansible.builtin.apt:
     pkg:
-    - docker
-    - docker-compose
+    #- docker
+    #- docker-compose
     - docker.io
     - python3-docker
-    - python3-pip
+    #- python3-pip
 
 - name: "Start MariaDB Docker container"
   docker_container:
