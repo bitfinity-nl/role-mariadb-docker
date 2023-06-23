@@ -30,9 +30,9 @@
 #
 mariadb_root_password : 'your_root_password'
 mariadb_databases     :
-  - { db_name : 'database',
-      db_user : 'dbuser',
-      db_pass : 'your_password',
+  - { db_name : 'database1',
+      db_user : 'dbuser1',
+      db_pass : 'your_password1',
       }
 
       
