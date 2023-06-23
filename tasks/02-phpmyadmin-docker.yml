@@ -1,0 +1,16 @@
+
+
+
+    - name: Start phpMyAdmin Docker container
+      docker_container:
+        name: "{{ phpmyadmin_container_name }}"
+        image: phpmyadmin/phpmyadmin
+        restart_policy: always
+        links:
+          - "{{ mariadb_container_name }}:db"
+        environment:
+          PMA_HOST: db
+          PMA_PORT: 3306
+          PMA_ARBITRARY: 1
+        ports:
+          - "{{ phpmyadmin_port }}:80"
