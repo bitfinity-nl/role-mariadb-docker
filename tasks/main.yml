@@ -8,4 +8,6 @@
 #
 # Description:
 #   This is the main file of the role.
-
+#
+ #   - name: "Include tasks/01-base.yml"
+ #     include_tasks: tasks/01-base.yml
