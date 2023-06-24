@@ -9,7 +9,7 @@
 
 MYSQL_ARGS="--defaults-extra-file=/root/.my.cnf"
 #MYSQL="/usr/bin/mysql $MYSQL_ARGS"
-MYSQL="source ~/.env && docker exec -it mariadb mariadb -u root -p${MARIADB_ROOT_PASSWORD}"
+MYSQL="source .env && docker exec -it mariadb mariadb -u root -p${MARIADB_ROOT_PASSWORD}"
 MYSQLDUMP="/usr/bin/mysqldump $MYSQL_ARGS"
 DEST="{{ mariadb_backup_path }}"
 RETENTION={{ mariadb_backup_rotate }}
@@ -27,7 +27,7 @@ do
 
    # Backup database
    #$MYSQLDUMP $DB | gzip -9 -c > $DEST/$DB-`date +%Y%m%d-%H%M`.sql.gz
-   source ~/.env && docker exec -it mariadb mariadb -u root -p 
+   #source ~/.env && docker exec -it mariadb mariadb -u root -p 
 
 done
 
