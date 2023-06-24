@@ -17,8 +17,8 @@
 
 - name: "Start MariaDB Docker container"
   docker_container:
-    name: "{{ mariadb_container_name }}"
-    image: mariadb:latest
+    name: "{{ mariadb_docker_container_name }}"
+    image: mariadb:"{{ mariadb_docker_container_tags }}"
     restart_policy: always
     env:
       MYSQL_ROOT_PASSWORD: "{{ mariadb_root_password }}"
