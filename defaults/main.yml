@@ -55,7 +55,7 @@ phpmyadmin_docker_ports       : '8080:80'
 #   U can use the crontab generator for setting up scheduled backup.
 #   - https://crontab.guru/
 #
-mariadb_backup_path     : '/opt/mariadb/backup'
-mariadb_backup_minute   : '5'
-mariadb_backup_hour     : '0'
-mariadb_backup_rotate   : '7'
+mariadb_backup_path           : '/opt/mariadb/backup'
+mariadb_backup_minute         : '5'
+mariadb_backup_hour           : '0'
+mariadb_backup_rotate         : '7'
