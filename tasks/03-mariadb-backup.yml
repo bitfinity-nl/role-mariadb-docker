@@ -1,0 +1,37 @@
+#---
+# Title: role-mariadb-docker
+#
+# Author: Bitfinity / L. Rutten
+# Owner: Bitfinity / L. Rutten
+#
+# File: tasks/03-mariadb-backup.yml
+#
+# Description:
+#   This is taskfile contains steps for
+#   setup database backups.
+#
+- name: "Create MariaDB directory structure"
+  ansible.builtin.file:
+    path: "{{ mariadb_backup_path }}"
+    state: directory
+    owner: root
+    group: backup
+    mode: 0660
+    
+- name: "Transfer template(s)"
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+  with_items:
+    - { src: '.my.cnf.j2', dest: '/root/.my.cnf', owner: 'root', group: 'root', mode: '0600' }
+    - { src: 'mariadb-backup-logical.sh.j2', dest: '/root/mariadb-backup.sh', owner: 'root', group: 'root', mode: '0700' }
+
+- name: "Schedule backup script"
+  cron:
+    name: "Schedule database backup daily at {{ mariadb_backup_minute }} minutes past {{ mariadb_backup_hour }}"
+    minute: "{{ mariadb_backup_minute }}"
+    hour: "{{ mariadb_backup_hour }}"
+    job: "~/mariadb-backup.sh >/dev/null 2>&1"
