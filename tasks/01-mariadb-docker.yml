@@ -27,6 +27,7 @@
       MYSQL_PASSWORD: "{{ mariadb_password }}"
     volumes:
       - /var/lib/mysql:/var/lib/mysql
+      - /opt/mariadb/backup:/opt/mariadb/backup
     ports:
       - "3306:3306"
     container_default_behavior: no_defaults
