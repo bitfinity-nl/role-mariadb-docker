@@ -40,3 +40,22 @@ mariadb_password              : 'your_password'
 #
 phpmyadmin_docker_image_tags  : 'latest'
 phpmyadmin_docker_ports       : '8080:80'      
+
+
+# -- tasks/03-mariadb-backup.yml --
+#
+# Variable(s) and Example(s):
+#   mariadb_backup_type     : 'logical'               # Set backup type (none, default=logical, physical). 
+#   mariadb_backup_path     : '/opt/backups/mariadb'  # Set backup path.
+#   mariadb_backup_minute   : '5'                     # Set cronjob minutes.
+#   mariadb_backup_hour     : '0'                     # Set cronjob hours
+#   mariadb_backup_rotate   : '7'                     # Set retention.
+#
+# Note(s):
+#   U can use the crontab generator for setting up scheduled backup.
+#   - https://crontab.guru/
+#
+mariadb_backup_path     : '/opt/mariadb/backup'
+mariadb_backup_minute   : '5'
+mariadb_backup_hour     : '0'
+mariadb_backup_rotate   : '7'
