@@ -22,9 +22,10 @@
 # Description:
 #   These variable(s) are the default settings for this role.
 #
-mariadb_root_password : 'your_root_password'
-mariadb_database      : 'your_database'
-mariadb_user          : 'your_user'
-mariadb_password      : 'your_password'
+mariadb_container_name : 'mariadb'
+mariadb_root_password  : 'your_root_password'
+mariadb_database       : 'your_database'
+mariadb_user           : 'your_user'
+mariadb_password       : 'your_password'
 
       
