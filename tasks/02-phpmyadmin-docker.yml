@@ -11,7 +11,7 @@
 #
 - name: Start phpMyAdmin Docker container
   docker_container:
-    name: "{{ phpmyadmin_container_name }}"
+    name: "phpmyadmin"
     image: phpmyadmin/phpmyadmin
     restart_policy: always
     links:
