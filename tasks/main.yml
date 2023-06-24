@@ -14,3 +14,6 @@
 
 - name: "Include tasks/02-phpmyadmin-docker.yml for installing PHPMyAdmin for MariaDB"
   include_tasks: 02-phpmyadmin-docker.yml
+  
+- name: "Include tasks/03-mariadb-backup.yml for installing PHPMyAdmin for MariaDB"
+  include_tasks: 03-mariadb-backup.yml
