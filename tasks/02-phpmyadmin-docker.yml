@@ -12,14 +12,14 @@
 - name: Start phpMyAdmin Docker container
   docker_container:
     name: phpmyadmin
-    image: "phpmyadmin:{{ phpmyadmin_docker_image_tags }}"
+    image: "phpmyadmin/phpmyadmin:{{ phpmyadmin_docker_image_tags }}"
     restart_policy: always
     links:
       - "{{ mariadb_docker_container_name }}:db"
-    environment:
+    env:
       PMA_HOST: db
       PMA_PORT: 3306
       PMA_ARBITRARY: 1
     ports:
-      - "8080:80"
+      - 8080:80
     container_default_behavior: no_defaults
