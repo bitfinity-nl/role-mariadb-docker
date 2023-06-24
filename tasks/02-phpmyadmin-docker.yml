@@ -19,7 +19,7 @@
     env:
       PMA_HOST: db
       PMA_PORT: '3306'
-      PMA_ARBITRARY: 1
+      PMA_ARBITRARY: '1'
     ports:
       - 8080:80
     container_default_behavior: no_defaults
