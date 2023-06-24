@@ -12,7 +12,7 @@
 - name: Start phpMyAdmin Docker container
   docker_container:
     name: phpmyadmin
-    image: phpmyadmin/phpmyadmin:"{{ phpmyadmin_docker_image_tags }}"
+    image: "phpmyadmin/phpmyadmin:{{ phpmyadmin_docker_image_tags }}"
     restart_policy: always
     links:
       - "{{ mariadb_docker_container_name }}:db"
