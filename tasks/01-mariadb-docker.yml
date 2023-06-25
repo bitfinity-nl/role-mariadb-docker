@@ -21,12 +21,12 @@
     image: "mariadb:{{ mariadb_docker_image_tags }}"
     restart_policy: always
     env:
-      MYSQL_ROOT_PASSWORD: "{{ mariadb_root_password }}"
-      MYSQL_DATABASE: "{{ mariadb_database }}"
-      MYSQL_USER: "{{ mariadb_user }}"
-      MYSQL_PASSWORD: "{{ mariadb_password }}"
+      MARIADB_ROOT_PASSWORD: "{{ mariadb_root_password }}"
+      MARIADB_DATABASE: "{{ mariadb_database }}"
+      MARIADB_USER: "{{ mariadb_user }}"
+      MARIADB_PASSWORD: "{{ mariadb_password }}"
+      MARIADB_ROOT_PASSWORD_FILE: ~/.env
       MYSQL_MAX_ALLOWED_PACKET: 256M
-#    command: [--max-allowed-packet=32505856]
     volumes:
       - /var/lib/mysql:/var/lib/mysql
       - "{{ mariadb_backup_path }}:{{ mariadb_backup_path }}"
