@@ -25,8 +25,8 @@
       MARIADB_DATABASE: "{{ mariadb_database }}"
       MARIADB_USER: "{{ mariadb_user }}"
       MARIADB_PASSWORD: "{{ mariadb_password }}"
-      MARIADB_ROOT_PASSWORD_FILE: ~/.env
-      MYSQL_MAX_ALLOWED_PACKET: 256M
+      #MARIADB_ROOT_PASSWORD_FILE: ~/.env
+      #MYSQL_MAX_ALLOWED_PACKET: 256M
     volumes:
       - /var/lib/mysql:/var/lib/mysql
       - "{{ mariadb_backup_path }}:{{ mariadb_backup_path }}"
