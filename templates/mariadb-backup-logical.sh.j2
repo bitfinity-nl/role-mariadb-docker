@@ -28,7 +28,7 @@ do
    # Backup database
    #$MYSQLDUMP $DB | gzip -9 -c > $DEST/$DB-`date +%Y%m%d-%H%M`.sql.gz
    #source ~/.env && docker exec -it mariadb mariadb -u root -p 
-   source ~/.env && docker exec -it mariadb mariadb -u root -p${MARIADB_ROOT_PASSWORD} -BNe "mariadb-dump $DB | gzip -9 -c > $DEST/$DB-`date +%Y%m%d-%H%M`.sql.gz"
+   #source ~/.env && docker exec -it mariadb mariadb -u root -p${MARIADB_ROOT_PASSWORD} -BNe "mariadb-dump $DB | gzip -9 -c > $DEST/$DB-`date +%Y%m%d-%H%M`.sql.gz"
 
 done
 
