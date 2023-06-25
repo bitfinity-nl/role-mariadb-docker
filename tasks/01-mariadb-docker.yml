@@ -25,7 +25,8 @@
       MYSQL_DATABASE: "{{ mariadb_database }}"
       MYSQL_USER: "{{ mariadb_user }}"
       MYSQL_PASSWORD: "{{ mariadb_password }}"
-    command: [--max-allowed-packet=32505856]
+      MYSQL_MAX_ALLOWED_PACKET: 256M
+#    command: [--max-allowed-packet=32505856]
     volumes:
       - /var/lib/mysql:/var/lib/mysql
       - "{{ mariadb_backup_path }}:{{ mariadb_backup_path }}"
