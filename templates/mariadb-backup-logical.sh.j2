@@ -17,7 +17,7 @@ RETENTION={{ mariadb_backup_rotate }}
 
 
 # Put databases in array except system databases
-readarray -t DBLIST < <(source ~/.env && docker exec -it mariadb mariadb -u root -p${MARIADB_ROOT_PASSWORD} -BNe "show databases" | egrep -v '(mysql|.*_schema|sys)')
+readarray -t DBLIST < <(docker exec -it mariadb mariadb -u root -p${MARIADB_ROOT_PASSWORD} -BNe "show databases" | egrep -v '(mysql|.*_schema|sys)')
 
 for DB in "${DBLIST[@]}"
 do
