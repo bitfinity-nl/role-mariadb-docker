@@ -1,0 +1,31 @@
+#!/bin/bash
+#
+# Author: Bitfinity-NL
+# File: mariadb-backup.sh
+#
+# Source(s): 
+#   https://www.robpeck.com/2018/06/backing-up-and-rotating-mysql-databases-the-easy-way/
+#   https://tecadmin.net/delete-files-older-x-days/
+
+DEST="/opt/mariadb/backup"
+RETENTION=7
+NOW=$(date +"%Y%m%d-%H%M")
+
+# Put databases in array except system databases
+readarray -t DBLIST < <(source ~/.env && docker exec -it mariadb mariadb -u root -p${MARIADB_ROOT_PASSWORD} -BNe "show databases" | egrep -v '(mysql|.*_schema|sys)')
+
+for DB in "${DBLIST[@]}"
+do
+   : 
+   # Print database to screen 
+   echo Back-up in progress for database $DB
+
+   # Backup database
+   source ~/.env && docker exec -it mariadb \
+   mariadb-dump --user=root --password ${MARIADB_ROOT_PASSWORD} \
+   --lock-tables --databases $DB1 > $DEST/$NOW.sql
+
+done
+
+# Remove backups when retention is overdue.
+find $DEST -name "*.sql.gz" -type f -mtime +$RETENTION -exec rm -f {} \;
