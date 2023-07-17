@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Author: Bitfinity-NL
-# File: mariadb-backup.sh
+# File: mariadb-backup-logical.sh
 #
 # Source(s): 
 #   https://www.robpeck.com/2018/06/backing-up-and-rotating-mysql-databases-the-easy-way/
@@ -12,20 +12,30 @@ RETENTION=7
 NOW=$(date +"%Y%m%d-%H%M")
 
 # Put databases in array except system databases
-readarray -t DBLIST < <(source ~/.env && docker exec -it mariadb mariadb -u root -p${MARIADB_ROOT_PASSWORD} -BNe "show databases" | egrep -v '(mysql|.*_schema|sys)')
+readarray -t DBLIST < <(source ~/.env && docker exec -it mariadb mariadb -u root -p${MARIADB_ROOT_PASSWORD} -BNe "show database>
 
 for DB in "${DBLIST[@]}"
 do
    : 
-   # Print database to screen 
-   echo Back-up in progress for database $DB
+   # Put found DB in Variable.
+   DBBACKUP=$DBLIST
+   
+   # Print database to screen. 
+   echo Back-up in progress for database $DBBACKUP
+   echo $DBBACKUP >  ~/result.log
 
-   # Backup database
+
+   # Convert string in ~/result.log to Unix.
+   apt install -y dos2unix
+   UNIXRESULT=$(dos2unix  ~/result.log ;cat ~/result.log)
+
+
+   # Backup database.
    source ~/.env && docker exec -it mariadb \
    mariadb-dump --user=root --password ${MARIADB_ROOT_PASSWORD} \
-   --lock-tables --databases $DB1 > $DEST/$NOW.sql
+   --lock-tables --databases $DB > $DEST/$NOW-$UNIXRESULT.sql
 
 done
 
 # Remove backups when retention is overdue.
-find $DEST -name "*.sql.gz" -type f -mtime +$RETENTION -exec rm -f {} \;
+find $DEST -name "*.sql" -type f -mtime +$RETENTION -exec rm -f {} \;
