@@ -30,7 +30,7 @@
     - { src: 'mariadb-backup-logical.sh.j2', dest: '/root/mariadb-backup.sh', owner: 'root', group: 'root', mode: '0700' }
 
 - name: "Schedule backup script"
-  cron:
+  ansible.builtin.cron:
     name: "Schedule database backup daily at {{ mariadb_backup_minute }} minutes past {{ mariadb_backup_hour }}"
     minute: "{{ mariadb_backup_minute }}"
     hour: "{{ mariadb_backup_hour }}"
