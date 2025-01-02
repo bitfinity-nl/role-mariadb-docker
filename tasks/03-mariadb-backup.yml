@@ -12,8 +12,11 @@
 #
 - name: "Install APT-packages"
   ansible.builtin.apt:
-    name: cron
+    name: "{{ item }}"
     state: present
+  loop:
+    - cron
+    - python3-pymysql
 
 - name: "Create MariaDB directory structure"
   ansible.builtin.file:
