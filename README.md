@@ -2,6 +2,7 @@
 This role contains the setup of a MariaDB server with docker.
 
 # Access to MariaDB
+- Access docker: ``docker exec -it mariadb bash``
 - Access database: ``docker exec -it mariadb bash -c 'mariadb -u root -p'``
 
 # Source(s)
