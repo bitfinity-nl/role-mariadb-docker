@@ -12,11 +12,13 @@
 #
 - name: "Install APT-packages"
   ansible.builtin.apt:
-    name: "{{ item }}"
+    name: "{{ mariadb_backup_packages.name }}"
     state: present
   loop:
-    - cron
-    - python3-pymysql
+    - { name: 'cron', desc: 'For scheduling backup' }
+    - { name: 'python3-pymysql', desc: 'Python for MySQL or MariaDB' }
+  loop_control:
+    loop_var: mariadb_backup_packages
 
 - name: "Create MariaDB directory structure"
   ansible.builtin.file:
@@ -28,15 +30,17 @@
     
 - name: "Transfer template(s)"
   ansible.builtin.template:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
-    owner: "{{ item.owner }}"
-    group: "{{ item.group }}"
-    mode: "{{ item.mode }}"
-  with_items:
+    src: "{{ mariadb_backup_templates.src }}"
+    dest: "{{ mariadb_backup_templates.dest }}"
+    owner: "{{ mariadb_backup_templates.owner }}"
+    group: "{{ mariadb_backup_templates.group }}"
+    mode: "{{ mariadb_backup_templates.mode }}"
+  loop:
     - { src: '.env.j2', dest: '/root/.env', owner: 'root', group: 'root', mode: '0600' }
     - { src: 'mariadb-backup-logical.sh.j2', dest: '/root/mariadb-backup.sh', owner: 'root', group: 'root', mode: '0700' }
-
+  loop_control:
+    loop_var: mariadb_backup_templates
+    
 - name: "Schedule backup script"
   ansible.builtin.cron:
     name: "Schedule database backup daily at {{ mariadb_backup_minute }} minutes past {{ mariadb_backup_hour }}"
