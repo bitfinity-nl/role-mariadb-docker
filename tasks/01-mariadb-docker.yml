@@ -11,9 +11,13 @@
 #
 - name: "Install APT packages"
   ansible.builtin.apt:
-    pkg:
-    #- docker.io
-    - python3-docker
+    name: "{{ packages.name }}"
+    state: present
+    update_cache: yes
+  loop:
+    - { name: 'python3-docker, desc: 'Python for docker' }
+  loop_control:
+    loop_var: packages
 
 - name: "Start MariaDB Docker container"
   docker_container:
