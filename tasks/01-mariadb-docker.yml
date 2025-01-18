@@ -23,6 +23,7 @@
   docker_container:
     name: "{{ mariadb_docker_container_name }}"
     image: "mariadb:{{ mariadb_docker_image_tags }}"
+    image_comparison: desired-image
     restart_policy: always
     env:
       MARIADB_ROOT_PASSWORD: "{{ mariadb_root_password }}"
