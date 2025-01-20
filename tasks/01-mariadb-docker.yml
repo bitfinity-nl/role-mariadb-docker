@@ -26,7 +26,7 @@
     image_comparison: desired-image
     image_label_mismatch: ignore
     image_name_mismatch: ignore
-    restart_policy: always
+    restart_policy: unless-stopped
     env:
       MARIADB_ROOT_PASSWORD: "{{ mariadb_root_password }}"
       MARIADB_DATABASE: "{{ mariadb_database }}"
