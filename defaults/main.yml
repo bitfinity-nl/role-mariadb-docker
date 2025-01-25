@@ -17,9 +17,9 @@
 #   mariadb_container_name        : 'mariadb'             # Set name of the docker container.
 #   mariadb_docker_image_tags     : 'latest'              # Set the tag (version) of the docker image.
 #   mariadb_root_password         : 'your_root_password'  # Set MariaDB root account.
-#   mariadb_database              : 'your_database'       # Set database name.
-#   mariadb_user                  : 'your_user'           # Set database user.
-#   mariadb_password              : 'your_password'       # Set database password.
+#   mariadb_database              : 'your_database'       # Set initial database name (is empty then no database wil be created).
+#   mariadb_user                  : 'your_user'           # Set initial database user.
+#   mariadb_password              : 'your_password'       # Set initial database password.
 #
 # Description:
 #   These variable(s) are the default settings for this role.
@@ -27,9 +27,9 @@
 mariadb_docker_container_name : 'mariadb'
 mariadb_docker_image_tags     : 'latest'
 mariadb_root_password         : 'your_root_password'
-mariadb_database              : 'your_database'
-mariadb_user                  : 'your_user'
-mariadb_password              : 'your_password'
+mariadb_database              : ''
+mariadb_user                  : ''
+mariadb_password              : ''
 
 
 # -- tasks/02-phpmyadmin-docker.yml --
