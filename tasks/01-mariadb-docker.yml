@@ -9,7 +9,7 @@
 # Description:
 #   This is the main file of the role.
 #
-- name: "Install APT packages"
+- name: "Install APT packages on '{{ ansible_hostname }}'"
   ansible.builtin.apt:
     name: "{{ packages.name }}"
     state: present
@@ -19,7 +19,7 @@
   loop_control:
     loop_var: packages
 
-- name: "Start MariaDB Docker container"
+- name: "Start MariaDB Docker container with creating initial database '{{ mariadb_database }}' on '{{ ansible_hostname }}'"
   docker_container:
     name: "{{ mariadb_docker_container_name }}"
     image: "mariadb:{{ mariadb_docker_image_tags }}"
@@ -40,8 +40,25 @@
     ports:
       - "3306:3306"
     container_default_behavior: no_defaults
-    
-- name: Wait for MariaDB to start
+  when: mariadb_database|length > 0
+
+- name: "Start MariaDB Docker container without creating initial database on '{{ ansible_hostname }}'"
+  docker_container:
+    name: "{{ mariadb_docker_container_name }}"
+    image: "mariadb:{{ mariadb_docker_image_tags }}"
+    image_comparison: desired-image
+    image_label_mismatch: ignore
+    image_name_mismatch: ignore
+    restart_policy: unless-stopped
+    volumes:
+      - /var/lib/mysql:/var/lib/mysql
+      - "{{ mariadb_backup_path }}:{{ mariadb_backup_path }}"
+    ports:
+      - "3306:3306"
+    container_default_behavior: no_defaults
+  when: mariadb_database|length >= 0
+
+- name: "Wait for MariaDB to start on '{{ ansible_hostname }}'"
   wait_for:
     host: 127.0.0.1
     port: 3306
