@@ -50,6 +50,8 @@
     image_label_mismatch: ignore
     image_name_mismatch: ignore
     restart_policy: unless-stopped
+    env:
+      MARIADB_ROOT_PASSWORD: "{{ mariadb_root_password }}"
     volumes:
       - /var/lib/mysql:/var/lib/mysql
       - "{{ mariadb_backup_path }}:{{ mariadb_backup_path }}"
