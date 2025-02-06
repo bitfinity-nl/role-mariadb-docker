@@ -8,6 +8,7 @@
 #
 # Description:
 #   This is the main file of the role.
+#   docker exec -it mariadb bash.
 #
 - name: "Install APT packages on '{{ ansible_hostname }}'"
   ansible.builtin.apt:
@@ -36,6 +37,7 @@
       #MYSQL_MAX_ALLOWED_PACKET: 256M
     volumes:
       - /var/lib/mysql:/var/lib/mysql
+      - /opt/docker/mariadb/etc/mysql:/etc/mysql
       - "{{ mariadb_backup_path }}:{{ mariadb_backup_path }}"
     ports:
       - "3306:3306"
