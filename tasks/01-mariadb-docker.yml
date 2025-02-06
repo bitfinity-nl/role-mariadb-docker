@@ -37,7 +37,7 @@
       #MYSQL_MAX_ALLOWED_PACKET: 256M
     volumes:
       - /var/lib/mysql:/var/lib/mysql
-      - /opt/ansible/docker/mariadb/etc/mysql:/etc/mysql
+      #- /opt/ansible/docker/mariadb/etc/mysql:/etc/mysql
       - "{{ mariadb_backup_path }}:{{ mariadb_backup_path }}"
     ports:
       - "3306:3306"
@@ -56,7 +56,7 @@
       MARIADB_ROOT_PASSWORD: "{{ mariadb_root_password }}"
     volumes:
       - /var/lib/mysql:/var/lib/mysql
-      - /opt/ansible/docker/mariadb/etc/mysql:/etc/mysql
+      #- /opt/ansible/docker/mariadb/etc/mysql:/etc/mysql
       - "{{ mariadb_backup_path }}:{{ mariadb_backup_path }}"
     ports:
       - "3306:3306"
