@@ -54,6 +54,10 @@
     restart_policy: unless-stopped
     env:
       MARIADB_ROOT_PASSWORD: "{{ mariadb_root_password }}"
+    mounts:
+      - type: bind
+        source: /opt/ansible/docker/mariadb/etc/mysql
+        target: /etc/mysql
     volumes:
       - /var/lib/mysql:/var/lib/mysql
       #- /opt/ansible/docker/mariadb/etc/mysql:/etc/mysql
