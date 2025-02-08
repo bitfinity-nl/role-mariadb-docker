@@ -20,6 +20,18 @@
   loop_control:
     loop_var: packages
 
+- name: "Transfer template(s) to on '{{ ansible_hostname }}"
+  ansible.builtin.template:
+    src: "{{ mariadb_config_templates.src }}"
+    dest: "{{ mariadb_config_templates.dest }}"
+    owner: "{{ mariadb_config_templates.owner }}"
+    group: "{{ mariadb_config_templates.group }}"
+    mode: "{{ mariadb_config_templates.mode }}"
+  loop:
+    - { src: 'templates/my.cnf.j2', dest: '/etc/mysql/conf.d/my.cnf', owner: 'root', group: 'root', mode: '0644' }
+  loop_control:
+    loop_var: mariadb_config_templates
+
 - name: "Start MariaDB Docker container with creating initial database '{{ mariadb_database }}' on '{{ ansible_hostname }}'"
   docker_container:
     name: "{{ mariadb_docker_container_name }}"
@@ -56,7 +68,7 @@
       MARIADB_ROOT_PASSWORD: "{{ mariadb_root_password }}"
     volumes:
       - /var/lib/mysql:/var/lib/mysql
-      #- /opt/ansible/docker/mariadb/etc/mysql:/etc/mysql
+      - /opt/ansible/docker/mariadb/etc/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
       - "{{ mariadb_backup_path }}:{{ mariadb_backup_path }}"
     ports:
       - "3306:3306"
