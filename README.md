@@ -10,4 +10,4 @@ This role contains the setup of a MariaDB server with docker.
 - https://hub.docker.com/r/phpmyadmin/phpmyadmin/
 - https://migueldoctor.medium.com/run-mariadb-phpmyadmin-locally-in-3-steps-using-docker-6b5912ff37c9
 - https://techoverflow.net/2020/12/01/how-to-backup-data-from-docker-compose-mariadb-container-using-mysqldump/
-  
+- UTF8 fix: https://moodle.org/mod/forum/discuss.php?d=445699
