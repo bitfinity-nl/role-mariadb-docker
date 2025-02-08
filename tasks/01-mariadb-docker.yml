@@ -20,6 +20,14 @@
   loop_control:
     loop_var: packages
 
+- name: "Create Ansible directory structure for MariaDB on '{{ ansible_hostname }}"
+  ansible.builtin.file:
+    path: /opt/ansible/docker/mariadb/etc/mysql/conf.d/
+    state: directory
+    owner: root
+    group: root
+    mode: '0644'
+    
 - name: "Transfer template(s) to on '{{ ansible_hostname }}"
   ansible.builtin.template:
     src: "{{ mariadb_config_templates.src }}"
