@@ -28,7 +28,7 @@
     group: "{{ mariadb_config_templates.group }}"
     mode: "{{ mariadb_config_templates.mode }}"
   loop:
-    - { src: 'templates/my.cnf.j2', dest: '/etc/mysql/conf.d/my.cnf', owner: 'root', group: 'root', mode: '0644' }
+    - { src: 'templates/my.cnf.j2', dest: '/opt/ansible/docker/mariadb/etc/mysql/conf.d/my.cnf', owner: 'root', group: 'root', mode: '0644' }
   loop_control:
     loop_var: mariadb_config_templates
 
