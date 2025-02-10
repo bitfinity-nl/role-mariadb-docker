@@ -30,7 +30,9 @@ mariadb_root_password         : 'your_root_password'
 mariadb_database              : ''
 mariadb_user                  : ''
 mariadb_password              : ''
-
+mariadb_character_set_server  : 'utf8mb4'
+mariadb_collation_server      : 'utf8mb4_uca1400_ai_ci'
+mariadb_init_connect          : 'utf8mb4_uca1400_ai_ci'
 
 # -- tasks/02-phpmyadmin-docker.yml --
 #
