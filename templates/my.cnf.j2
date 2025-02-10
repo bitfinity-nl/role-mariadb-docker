@@ -5,8 +5,9 @@
 #collation-server = utf8mb4_bin
 # -- End: Working --
 
-character-set-server = utf8mb4
-collation-server = utf8mb4_unicode_ci
+init_connect=‘SET collation_connection = {{ mariadb_init_connect }}’
+character-set-server = {{ mariadb_character_set_server }}
+collation-server = {{ mariadb_collation_server }}
 
 #collation-server = utf8mb4_uca1400_ai_ci
 
