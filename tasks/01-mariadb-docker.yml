@@ -76,7 +76,7 @@
       MARIADB_ROOT_PASSWORD: "{{ mariadb_root_password }}"
     volumes:
       - /var/lib/mysql:/var/lib/mysql
-      - /opt/ansible/docker/mariadb/etc/mysql/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf
+      #- /opt/ansible/docker/mariadb/etc/mysql/conf.d/my.cnf:/etc/mysql/conf.d/my.cnf
       - "{{ mariadb_backup_path }}:{{ mariadb_backup_path }}"
     ports:
       - "3306:3306"
