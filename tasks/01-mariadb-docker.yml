@@ -17,6 +17,7 @@
     update_cache: yes
   loop:
     - { name: 'python3-docker', desc: 'Python for docker' }
+    - { name: 'mariadb-clientr', desc: 'MariaDB client' }
   loop_control:
     loop_var: packages
 
